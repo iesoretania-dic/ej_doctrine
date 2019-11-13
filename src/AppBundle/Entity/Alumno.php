@@ -50,6 +50,13 @@ class Alumno
     private $partes;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Grupo", inversedBy="alumnado")
+     * @ORM\JoinColumn(nullable=false)
+     * @var Grupo
+     */
+    private $grupo;
+
+    /**
      * Profesor constructor.
      */
     public function __construct()
@@ -134,6 +141,24 @@ class Alumno
     public function setObservaciones($observaciones)
     {
         $this->observaciones = $observaciones;
+        return $this;
+    }
+
+    /**
+     * @return Grupo
+     */
+    public function getGrupo()
+    {
+        return $this->grupo;
+    }
+
+    /**
+     * @param Grupo $grupo
+     * @return Alumno
+     */
+    public function setGrupo($grupo)
+    {
+        $this->grupo = $grupo;
         return $this;
     }
 }

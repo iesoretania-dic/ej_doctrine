@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +36,20 @@ class Grupo
      * @var int
      */
     private $planta;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Alumno", mappedBy="grupo")
+     * @var Alumno[]
+     */
+    private $alumnado;
+
+    /**
+     * Grupo constructor.
+     */
+    public function __construct()
+    {
+        $this->alumnado = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -95,6 +110,24 @@ class Grupo
     public function setPlanta($planta)
     {
         $this->planta = $planta;
+        return $this;
+    }
+
+    /**
+     * @return Alumno[]
+     */
+    public function getAlumnado()
+    {
+        return $this->alumnado;
+    }
+
+    /**
+     * @param Alumno[] $alumnado
+     * @return Grupo
+     */
+    public function setAlumnado($alumnado)
+    {
+        $this->alumnado = $alumnado;
         return $this;
     }
 }
