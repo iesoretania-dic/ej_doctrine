@@ -145,6 +145,24 @@ class Alumno
     }
 
     /**
+     * @return Parte[]
+     */
+    public function getPartes()
+    {
+        return $this->partes;
+    }
+
+    /**
+     * @param Parte[] $partes
+     * @return Alumno
+     */
+    public function setPartes($partes)
+    {
+        $this->partes = $partes;
+        return $this;
+    }
+
+    /**
      * @return Grupo
      */
     public function getGrupo()

@@ -112,4 +112,22 @@ class Profesor
         $this->dni = $dni;
         return $this;
     }
+
+    /**
+     * @return Parte[]
+     */
+    public function getPartes()
+    {
+        return $this->partes;
+    }
+
+    /**
+     * @param Parte[] $partes
+     * @return Profesor
+     */
+    public function setPartes($partes)
+    {
+        $this->partes = $partes;
+        return $this;
+    }
 }
