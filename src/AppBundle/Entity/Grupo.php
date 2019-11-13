@@ -51,11 +51,18 @@ class Grupo
     private $tutor;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Profesor")
+     * @var Profesor[]
+     */
+    private $profesores;
+
+    /**
      * Grupo constructor.
      */
     public function __construct()
     {
         $this->alumnado = new ArrayCollection();
+        $this->profesores = new ArrayCollection();
     }
 
     /**
@@ -153,6 +160,24 @@ class Grupo
     public function setTutor($tutor)
     {
         $this->tutor = $tutor;
+        return $this;
+    }
+
+    /**
+     * @return Profesor[]
+     */
+    public function getProfesores()
+    {
+        return $this->profesores;
+    }
+
+    /**
+     * @param Profesor[] $profesores
+     * @return Grupo
+     */
+    public function setProfesores($profesores)
+    {
+        $this->profesores = $profesores;
         return $this;
     }
 }
