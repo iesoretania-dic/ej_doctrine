@@ -44,6 +44,13 @@ class Grupo
     private $alumnado;
 
     /**
+     * @ORM\OneToOne(targetEntity="Profesor", inversedBy="tutoria")
+     * @ORM\JoinColumn(nullable=false)
+     * @var Profesor
+     */
+    private $tutor;
+
+    /**
      * Grupo constructor.
      */
     public function __construct()
@@ -128,6 +135,24 @@ class Grupo
     public function setAlumnado($alumnado)
     {
         $this->alumnado = $alumnado;
+        return $this;
+    }
+
+    /**
+     * @return Profesor
+     */
+    public function getTutor()
+    {
+        return $this->tutor;
+    }
+
+    /**
+     * @param Profesor $tutor
+     * @return Grupo
+     */
+    public function setTutor($tutor)
+    {
+        $this->tutor = $tutor;
         return $this;
     }
 }

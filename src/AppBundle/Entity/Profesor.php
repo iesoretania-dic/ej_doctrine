@@ -44,6 +44,12 @@ class Profesor
     private $partes;
 
     /**
+     * @ORM\OneToOne(targetEntity="Grupo", mappedBy="tutor")
+     * @var Grupo
+     */
+    private $tutoria;
+
+    /**
      * Profesor constructor.
      */
     public function __construct()
@@ -128,6 +134,24 @@ class Profesor
     public function setPartes($partes)
     {
         $this->partes = $partes;
+        return $this;
+    }
+
+    /**
+     * @return Grupo
+     */
+    public function getTutoria()
+    {
+        return $this->tutoria;
+    }
+
+    /**
+     * @param Grupo $tutoria
+     * @return Profesor
+     */
+    public function setTutoria($tutoria)
+    {
+        $this->tutoria = $tutoria;
         return $this;
     }
 }
