@@ -53,4 +53,19 @@ class AlumnoRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function countByAnioNacimiento($anio)
+    {
+        $fechaMinima = new \DateTime($anio . '/01/01');
+        $fechaMaxima = new \DateTime(($anio+1) . '/01/01');
+
+        return $this->createQueryBuilder('a')
+            ->select('COUNT(a)')
+            ->where('a.fechaNacimiento >= :fechaMinima')
+            ->andWhere('a.fechaNacimiento < :fechaMaxima')
+            ->setParameter('fechaMinima', $fechaMinima)
+            ->setParameter('fechaMaxima', $fechaMaxima)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
