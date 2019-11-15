@@ -67,4 +67,12 @@ class AlumnoRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function findByAnioNacimientoOrdenados($anio)
+    {
+        return $this->findByAnioNacimientoQueryBuilder($anio)
+            ->orderBy('a.fechaNacimiento', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }
