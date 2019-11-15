@@ -40,8 +40,9 @@ class AlumnoRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByAnioNacimiento($anio)
+    private function findByAnioNacimientoQueryBuilder($anio)
     {
+
         $fechaMinima = new \DateTime($anio . '/01/01');
         $fechaMaxima = new \DateTime(($anio+1) . '/01/01');
 
@@ -49,22 +50,20 @@ class AlumnoRepository extends ServiceEntityRepository
             ->where('a.fechaNacimiento >= :fechaMinima')
             ->andWhere('a.fechaNacimiento < :fechaMaxima')
             ->setParameter('fechaMinima', $fechaMinima)
-            ->setParameter('fechaMaxima', $fechaMaxima)
+            ->setParameter('fechaMaxima', $fechaMaxima);
+    }
+
+    public function findByAnioNacimiento($anio)
+    {
+        return $this->findByAnioNacimientoQueryBuilder($anio)
             ->getQuery()
             ->getResult();
     }
 
     public function countByAnioNacimiento($anio)
     {
-        $fechaMinima = new \DateTime($anio . '/01/01');
-        $fechaMaxima = new \DateTime(($anio+1) . '/01/01');
-
-        return $this->createQueryBuilder('a')
+        return $this->findByAnioNacimientoQueryBuilder($anio)
             ->select('COUNT(a)')
-            ->where('a.fechaNacimiento >= :fechaMinima')
-            ->andWhere('a.fechaNacimiento < :fechaMaxima')
-            ->setParameter('fechaMinima', $fechaMinima)
-            ->setParameter('fechaMaxima', $fechaMaxima)
             ->getQuery()
             ->getSingleScalarResult();
     }
