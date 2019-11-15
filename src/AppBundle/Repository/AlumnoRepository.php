@@ -29,4 +29,14 @@ class AlumnoRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findApellidoEmpiezaPor($texto)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.apellidos LIKE :valor')
+            ->setParameter('valor', $texto . '%')
+            ->addOrderBy('a.nombre')
+            ->getQuery()
+            ->getResult();
+    }
 }
