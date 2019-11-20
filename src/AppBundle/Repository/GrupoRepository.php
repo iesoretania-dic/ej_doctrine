@@ -16,6 +16,9 @@ class GrupoRepository extends ServiceEntityRepository
     public function findTodosOrdenados()
     {
         return $this->createQueryBuilder('g')
+            ->select('g')
+            ->addSelect('t')
+            ->join('g.tutor', 't')
             ->orderBy('g.descripcion')
             ->getQuery()
             ->getResult();
