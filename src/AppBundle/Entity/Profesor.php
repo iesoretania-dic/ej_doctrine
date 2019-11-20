@@ -57,6 +57,11 @@ class Profesor
         $this->partes = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getNombre() . ' ' . $this->getApellidos();
+    }
+
     /**
      * @return int
      */
