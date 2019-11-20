@@ -47,6 +47,8 @@ class AlumnoRepository extends ServiceEntityRepository
         $fechaMaxima = new \DateTime(($anio+1) . '/01/01');
 
         return $this->createQueryBuilder('a')
+            ->addSelect('g')
+            ->join('a.grupo', 'g')
             ->where('a.fechaNacimiento >= :fechaMinima')
             ->andWhere('a.fechaNacimiento < :fechaMaxima')
             ->setParameter('fechaMinima', $fechaMinima)
