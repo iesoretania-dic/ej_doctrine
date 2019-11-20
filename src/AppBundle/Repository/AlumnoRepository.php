@@ -88,4 +88,16 @@ class AlumnoRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findConCuentaPartes()
+    {
+        return $this->createQueryBuilder('a')
+            ->select('a AS alumno')
+            ->addSelect('COUNT(p) AS cuenta')
+            ->leftJoin('a.partes', 'p')
+            ->groupBy('a')
+            ->orderBy('cuenta', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ejercicio 13</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Apellidos</th>
+            <th>Nombre</th>
+            <th>Fecha nacimiento</th>
+            <th>Grupo</th>
+            <th>Núm. partes</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for fila in alumnos %}
+            <tr>
+                <td>{{ fila.alumno.apellidos }}</td>
+                <td>{{ fila.alumno.nombre }}</td>
+                <td>{{ fila.alumno.fechaNacimiento|date('d/m/Y') }}</td>
+                <td>{{ fila.alumno.grupo.descripcion }}</td>
+                <td>{{ fila.cuenta }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
