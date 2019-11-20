@@ -13,13 +13,25 @@ class GrupoRepository extends ServiceEntityRepository
         parent::__construct($registry, Grupo::class);
     }
 
-    public function findTodosOrdenados()
+    public function findTodosQueryBuilder()
     {
         return $this->createQueryBuilder('g')
             ->select('g')
             ->addSelect('t')
-            ->join('g.tutor', 't')
+            ->join('g.tutor', 't');
+    }
+    public function findTodosOrdenados()
+    {
+        return $this->findTodosQueryBuilder()
             ->orderBy('g.descripcion')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findTodosOrdenadosDecreciente()
+    {
+        return $this->findTodosQueryBuilder()
+            ->orderBy('g.descripcion', 'DESC')
             ->getQuery()
             ->getResult();
     }

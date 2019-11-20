@@ -38,7 +38,7 @@ class Grupo
     private $planta;
 
     /**
-     * @ORM\OneToMany(targetEntity="Alumno", mappedBy="grupo")
+     * @ORM\OneToMany(targetEntity="Alumno", mappedBy="grupo", fetch="EXTRA_LAZY")
      * @var Alumno[]
      */
     private $alumnado;
