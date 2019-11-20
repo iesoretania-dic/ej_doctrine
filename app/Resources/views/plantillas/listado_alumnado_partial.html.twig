@@ -1,0 +1,18 @@
+<table>
+    <thead>
+        <tr>
+            <th>Apellidos</th>
+            <th>Nombre</th>
+            <th>Fecha nacimiento</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for alumno in alumnos %}
+            <tr>
+                <td>{{ alumno.apellidos }}</td>
+                <td>{{ alumno.nombre }}</td>
+                <td>{{ alumno.fechaNacimiento|date('d/m/Y') }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

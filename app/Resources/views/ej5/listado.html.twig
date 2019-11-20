@@ -3,22 +3,5 @@
 {% block body %}
     <h1>Ejercicio 5</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Apellidos</th>
-                <th>Nombre</th>
-                <th>Fecha nacimiento</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for alumno in alumnos %}
-                <tr>
-                    <td>{{ alumno.apellidos }}</td>
-                    <td>{{ alumno.nombre }}</td>
-                    <td>{{ alumno.fechaNacimiento|date('d/m/Y') }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% include 'plantillas/listado_alumnado_partial.html.twig' %}
 {% endblock %}

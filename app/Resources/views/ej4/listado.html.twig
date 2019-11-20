@@ -3,20 +3,5 @@
 {% block body %}
     <h1>Ejercicio 4</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Apellidos</th>
-                <th>Nombre</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for alumno in alumnos %}
-                <tr>
-                    <td>{{ alumno.apellidos }}</td>
-                    <td>{{ alumno.nombre }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% include 'plantillas/listado_alumnado_partial.html.twig' %}
 {% endblock %}
