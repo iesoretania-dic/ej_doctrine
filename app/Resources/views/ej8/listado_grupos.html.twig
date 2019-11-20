@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ejercicio 8</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Aula</th>
+                <th>Planta</th>
+                <th>Tutor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for grupo in grupos %}
+                <tr>
+                    <td>{{ grupo.descripcion }}</td>
+                    <td>{{ grupo.aula }}</td>
+                    <td>{{ grupo.planta }}</td>
+                    <td>{{ grupo.tutor.nombre }} {{ grupo.tutor.apellidos }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
