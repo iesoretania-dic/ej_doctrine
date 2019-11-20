@@ -13,7 +13,7 @@ class Ej10Controller extends Controller
      */
     public function ej10Action(GrupoRepository $grupoRepository)
     {
-        $grupos = $grupoRepository->findTodosOrdenadosDecreciente();
+        $grupos = $grupoRepository->findTodosOrdenadosDecrecienteConTotal();
         return $this->render('ej10/listado_grupos.html.twig', [
             'grupos' => $grupos
         ]);

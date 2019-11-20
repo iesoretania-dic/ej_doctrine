@@ -35,4 +35,17 @@ class GrupoRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findTodosOrdenadosDecrecienteConTotal()
+    {
+        return $this->createQueryBuilder('g')
+            ->select('g AS grupo')
+            ->addSelect('COUNT(a) AS total')->addSelect('t')
+            ->join('g.tutor', 't')
+            ->join('g.alumnado', 'a')
+            ->orderBy('g.descripcion', 'DESC')
+            ->groupBy('g')
+            ->getQuery()
+            ->getResult();
+    }
 }

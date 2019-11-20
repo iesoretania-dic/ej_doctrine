@@ -14,13 +14,13 @@
             </tr>
         </thead>
         <tbody>
-            {% for grupo in grupos %}
+            {% for resultado in grupos %}
                 <tr>
-                    <td>{{ grupo.descripcion }}</td>
-                    <td>{{ grupo.aula }}</td>
-                    <td>{{ grupo.planta }}</td>
-                    <td>{{ grupo.tutor }}</td>
-                    <td>{{ grupo.alumnado.count() }}</td>
+                    <td>{{ resultado.grupo.descripcion }}</td>
+                    <td>{{ resultado.grupo.aula }}</td>
+                    <td>{{ resultado.grupo.planta }}</td>
+                    <td>{{ resultado.grupo.tutor }}</td>
+                    <td>{{ resultado.total }}</td>
                 </tr>
             {% endfor %}
         </tbody>
