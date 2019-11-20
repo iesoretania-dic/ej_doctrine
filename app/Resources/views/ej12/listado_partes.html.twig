@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ejercicio 12 - Partes de {{ profesor }}</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha creación</th>
+                <th>Alumno</th>
+                <th>¿Avisado?</th>
+                <th>Observaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for parte in partes %}
+                <tr>
+                    <td>{{ parte.fechaCreacion|date('d/m/Y') }}</td>
+                    <td>{{ parte.alumno }}</td>
+                    <td>
+                        {% if parte.avisado %}
+                            Sí
+                        {% else %}
+                            No
+                        {% endif %}
+                    </td>
+                    <td>{{ parte.observaciones }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>
+        <a href="{{ path('ejercicio12_profesores') }}">&lt; Volver al listado de profesores</a>
+    </p>
+{% endblock %}

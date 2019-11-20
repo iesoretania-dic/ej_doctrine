@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ejercicio 12</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Apellidos</th>
+                <th>Nombre</th>
+                <th>Tutoría</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profesor in profesores %}
+                <tr>
+                    <td><a href="{{ path('ejercicio12_partes', {'id': profesor.id}) }}">{{ profesor.dni }}</a></td>
+                    <td>{{ profesor.apellidos }}</td>
+                    <td>{{ profesor.nombre }}</td>
+                    <td>
+                        {% if profesor.tutoria %}
+                            {{ profesor.tutoria.descripcion }}
+                        {% else %}
+                            ---
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
