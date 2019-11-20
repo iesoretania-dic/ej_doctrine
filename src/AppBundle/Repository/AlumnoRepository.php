@@ -83,6 +83,8 @@ class AlumnoRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             ->where('a.grupo = :grupo')
             ->setParameter('grupo', $grupo)
+            ->orderBy('a.apellidos')
+            ->addOrderBy('a.nombre')
             ->getQuery()
             ->getResult();
     }

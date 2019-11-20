@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Grupo;
 use AppBundle\Repository\AlumnoRepository;
 use AppBundle\Repository\GrupoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,15 +26,8 @@ class Ej11Controller extends Controller
      */
     public function ej11AlumnadoAction(
         AlumnoRepository $alumnoRepository,
-        GrupoRepository $grupoRepository,
-        $id
+        Grupo $grupo
     ) {
-        $grupo = $grupoRepository->find($id);
-
-        if ($grupo === null) {
-            throw $this->createNotFoundException();
-        }
-
         $alumnado = $alumnoRepository->findByGrupo($grupo);
         return $this->render('ej11/listado_alumnado.html.twig', [
             'alumnos' => $alumnado,
