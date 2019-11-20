@@ -77,4 +77,13 @@ class AlumnoRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findByGrupo($grupo)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.grupo = :grupo')
+            ->setParameter('grupo', $grupo)
+            ->getQuery()
+            ->getResult();
+    }
 }

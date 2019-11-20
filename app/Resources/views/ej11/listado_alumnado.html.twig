@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ejercicio 11 - Listado de alumnado de {{ grupo.descripcion }}</h1>
+
+    {% include 'plantillas/listado_alumnado_partial.html.twig' %}
+
+    <a href="{{ path('ejercicio11_grupos') }}">&lt; Volver al listado de grupos</a>
+{% endblock %}
