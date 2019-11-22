@@ -22,4 +22,17 @@ class ParteRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findByTextoObservaciones($texto)
+    {
+        return $this->createQueryBuilder('p')
+            ->addSelect('a')
+            ->addSelect('g')
+            ->join('p.alumno', 'a')
+            ->join('a.grupo', 'g')
+            ->where('p.observaciones LIKE :texto')
+            ->setParameter('texto', '%' . $texto .'%')
+            ->getQuery()
+            ->getResult();
+    }
 }
