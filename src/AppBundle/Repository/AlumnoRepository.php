@@ -100,4 +100,12 @@ class AlumnoRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findSinPartes()
+    {
+        return $this->createQueryBuilder('a')
+            ->where('SIZE(a.partes) = 0')
+            ->getQuery()
+            ->getResult();
+    }
 }
