@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ejercicio 16</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Apellidos</th>
+                <th>Nombre</th>
+                <th>Tutoría</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profesor in profesores %}
+                <tr>
+                    <td>{{ profesor.dni }}</td>
+                    <td>{{ profesor.apellidos }}</td>
+                    <td>{{ profesor.nombre }}</td>
+                    <td>
+                        {% if profesor.tutoria %}
+                            {{ profesor.tutoria.descripcion }}
+                        {% else %}
+                            ---
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

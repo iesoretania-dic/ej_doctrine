@@ -23,4 +23,15 @@ class ProfesorRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+
+    public function findSinPartes()
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.partes', 'pa')
+            ->having('COUNT(pa) = 0')
+            ->groupBy('p')
+            ->getQuery()
+            ->getResult();
+    }
 }
