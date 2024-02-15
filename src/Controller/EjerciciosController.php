@@ -53,4 +53,13 @@ class EjerciciosController extends AbstractController
             'estudiantes' => $estudiantes
         ]);
     }
+
+    #[Route('/ap6')]
+    final public function ap6(AlumnoRepository $alumnoRepository): Response
+    {
+        $numEstudiantes = $alumnoRepository->countByAnioNacimiento(1997);
+        return $this->render('ejercicios/ap6.html.twig', [
+            'num_estudiantes' => $numEstudiantes
+        ]);
+    }
 }

@@ -46,4 +46,13 @@ class AlumnoRepository extends ServiceEntityRepository
             ->setParameter('fin', new \DateTime($anio . '-12-31'))
             ->getResult();
     }
+
+    public function countByAnioNacimiento(int $anio): int
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT COUNT(a) FROM App\Entity\Alumno a WHERE a.fechaNacimiento >= :inicio AND a.fechaNacimiento <= :fin')
+            ->setParameter('inicio', new \DateTime($anio . '-01-01'))
+            ->setParameter('fin', new \DateTime($anio . '-12-31'))
+            ->getSingleScalarResult();
+    }
 }
