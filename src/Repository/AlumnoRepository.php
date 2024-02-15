@@ -37,4 +37,13 @@ class AlumnoRepository extends ServiceEntityRepository
             ->setParameter('apellido', $apellido . ' %')
             ->getResult();
     }
+
+    public function findByAnioNacimiento(int $anio): array
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT a, g FROM App\Entity\Alumno a JOIN a.grupo g WHERE a.fechaNacimiento >= :inicio AND a.fechaNacimiento <= :fin')
+            ->setParameter('inicio', new \DateTime($anio . '-01-01'))
+            ->setParameter('fin', new \DateTime($anio . '-12-31'))
+            ->getResult();
+    }
 }
