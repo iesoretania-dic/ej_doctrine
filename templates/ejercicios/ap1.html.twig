@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h1>Listado de estudiantes</h1>
     <table border="1px">
         <thead>
             <tr>
@@ -17,6 +18,10 @@
                     <td>{{ estudiante.apellidos }}</td>
                     <td>{{ estudiante.fechaNacimiento | date('d/m/Y') }}</td>
                     <td>{{ estudiante.grupo }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">No hay estudiantes</td>
                 </tr>
             {% endfor %}
         </tbody>

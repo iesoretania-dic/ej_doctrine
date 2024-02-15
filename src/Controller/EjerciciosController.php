@@ -17,10 +17,20 @@ class EjerciciosController extends AbstractController
             'estudiantes' => $estudiantes
         ]);
     }
+
     #[Route('/ap2')]
     final public function ap2(AlumnoRepository $alumnoRepository): Response
     {
         $estudiantes = $alumnoRepository->findByNoNombre('María');
+        return $this->render('ejercicios/ap1.html.twig', [
+            'estudiantes' => $estudiantes
+        ]);
+    }
+
+    #[Route('/ap3/{nombre}')]
+    final public function ap3(AlumnoRepository $alumnoRepository, string $nombre): Response
+    {
+        $estudiantes = $alumnoRepository->findByNombre($nombre);
         return $this->render('ejercicios/ap1.html.twig', [
             'estudiantes' => $estudiantes
         ]);
