@@ -21,4 +21,12 @@ class AlumnoRepository extends ServiceEntityRepository
             ->setParameter('nombre', $nombre)
             ->getResult();
     }
+
+    public function findByNoNombre(string $nombre): array
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT a, g FROM App\Entity\Alumno a JOIN a.grupo g WHERE a.nombre != :nombre')
+            ->setParameter('nombre', $nombre)
+            ->getResult();
+    }
 }
