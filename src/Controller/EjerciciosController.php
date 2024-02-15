@@ -62,4 +62,13 @@ class EjerciciosController extends AbstractController
             'num_estudiantes' => $numEstudiantes
         ]);
     }
+
+    #[Route('/ap7/{anio}')]
+    final public function ap7(AlumnoRepository $alumnoRepository, int $anio): Response
+    {
+        $estudiantes = $alumnoRepository->findByAnioNacimientoOrdenado($anio);
+        return $this->render('ejercicios/ap1.html.twig', [
+            'estudiantes' => $estudiantes
+        ]);
+    }
 }
