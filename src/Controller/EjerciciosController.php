@@ -35,4 +35,13 @@ class EjerciciosController extends AbstractController
             'estudiantes' => $estudiantes
         ]);
     }
+
+    #[Route('/ap4')]
+    final public function ap4(AlumnoRepository $alumnoRepository): Response
+    {
+        $estudiantes = $alumnoRepository->findByApellidoOrdenado('Ojeda');
+        return $this->render('ejercicios/ap1.html.twig', [
+            'estudiantes' => $estudiantes
+        ]);
+    }
 }
