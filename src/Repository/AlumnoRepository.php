@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Alumno;
 use App\Entity\Grupo;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 class AlumnoRepository extends ServiceEntityRepository
@@ -15,12 +16,17 @@ class AlumnoRepository extends ServiceEntityRepository
         parent::__construct($managerRegistry, Alumno::class);
     }
 
-    public function findByNombre(string $nombre): array
+    private function createConGrupoQueryBuilder(): QueryBuilder
     {
         return $this->createQueryBuilder('a')
             // las dos líneas siguientes son un FETCH JOIN
             ->addSelect('g')
-            ->join('a.grupo', 'g')
+            ->join('a.grupo', 'g');
+    }
+
+    public function findByNombre(string $nombre): array
+    {
+        return $this->createConGrupoQueryBuilder()
             ->where('a.nombre = :nombre')
             ->setParameter('nombre', $nombre)
             ->getQuery()
@@ -29,9 +35,10 @@ class AlumnoRepository extends ServiceEntityRepository
 
     public function findByNoNombre(string $nombre): array
     {
-        return $this->getEntityManager()
-            ->createQuery('SELECT a, g FROM App\Entity\Alumno a JOIN a.grupo g WHERE a.nombre != :nombre')
+        return $this->createConGrupoQueryBuilder()
+            ->where('a.nombre != :nombre')
             ->setParameter('nombre', $nombre)
+            ->getQuery()
             ->getResult();
     }
 
