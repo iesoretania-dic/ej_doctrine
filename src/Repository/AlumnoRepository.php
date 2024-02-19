@@ -44,9 +44,11 @@ class AlumnoRepository extends ServiceEntityRepository
 
     public function findByApellidoOrdenado(string $apellido): array
     {
-        return $this->getEntityManager()
-            ->createQuery('SELECT a, g FROM App\Entity\Alumno a JOIN a.grupo g WHERE a.apellidos LIKE :apellido ORDER BY a.nombre')
+        return $this->createConGrupoQueryBuilder()
+            ->where('a.apellidos LIKE :apellido')
+            ->orderBy('a.nombre')
             ->setParameter('apellido', $apellido . ' %')
+            ->getQuery()
             ->getResult();
     }
 
