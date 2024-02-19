@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Listado de grupos</h1>
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Planta</th>
+                <th>Aula</th>
+                <th>Tutor/a</th>
+                <th>Total estudiantes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resultado in resultados %}
+                <tr>
+                    <td>{{ resultado.grupo.descripcion }}</td>
+                    <td>{{ resultado.grupo.planta }}</td>
+                    <td>{{ resultado.grupo.aula }}</td>
+                    <td>{{ resultado.grupo.tutor }}</td>
+                    <td>{{ resultado.total }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">No hay grupos</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

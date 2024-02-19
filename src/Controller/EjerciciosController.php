@@ -81,4 +81,13 @@ class EjerciciosController extends AbstractController
             'grupos' => $grupos
         ]);
     }
+
+    #[Route('/ap9')]
+    final public function ap9(GrupoRepository $grupoRepository): Response
+    {
+        $resultados = $grupoRepository->listAllOrdenadoDescendenteConTotal();
+        return $this->render('ejercicios/ap9.html.twig', [
+            'resultados' => $resultados
+        ]);
+    }
 }

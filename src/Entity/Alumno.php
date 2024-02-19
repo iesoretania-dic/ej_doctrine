@@ -171,9 +171,9 @@ class Alumno
     }
 
     /**
-     * @return Parte[]|Collection
+     * @return Parte[]|Collection<int, Parte>
      */
-    public function getPartes(): array
+    public function getPartes(): Collection
     {
         return $this->partes;
     }

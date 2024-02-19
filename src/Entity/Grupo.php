@@ -136,9 +136,9 @@ class Grupo
     }
 
     /**
-     * @return Alumno[]|Collection
+     * @return Alumno[]|Collection<int, Alumno>
      */
-    public function getAlumnado(): array
+    public function getAlumnado(): Collection
     {
         return $this->alumnado;
     }
@@ -172,9 +172,9 @@ class Grupo
     }
 
     /**
-     * @return Profesor[]|Collection
+     * @return Profesor[]|Collection<int, Profesor>
      */
-    public function getProfesorado(): array
+    public function getProfesorado(): Collection
     {
         return $this->profesorado;
     }

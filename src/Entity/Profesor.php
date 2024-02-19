@@ -136,9 +136,9 @@ class Profesor
     }
 
     /**
-     * @return Parte[]|Collection
+     * @return Parte[]|Collection<int, Parte>
      */
-    public function getPartes(): array
+    public function getPartes(): Collection
     {
         return $this->partes;
     }
@@ -172,9 +172,9 @@ class Profesor
     }
 
     /**
-     * @return Grupo[]|Collection
+     * @return Grupo[]|Collection<int, Grupo>
      */
-    public function getGrupos(): array
+    public function getGrupos(): Collection
     {
         return $this->grupos;
     }
