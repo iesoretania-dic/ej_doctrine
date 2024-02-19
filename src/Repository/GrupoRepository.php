@@ -23,8 +23,15 @@ class GrupoRepository extends ServiceEntityRepository
 
     public function listAllOrdenadoDescendenteConTotal(): array
     {
-        return $this->getEntityManager()
-            ->createQuery('SELECT g AS grupo, t, SIZE(g.alumnado) AS total FROM App\Entity\Grupo g JOIN g.tutor t ORDER BY g.descripcion DESC')
+        // 'SELECT g AS grupo, t, SIZE(g.alumnado) AS total FROM App\Entity\Grupo g
+        // JOIN g.tutor t ORDER BY g.descripcion DESC')
+        return $this->createQueryBuilder('g')
+            ->select('g AS grupo')
+            ->addSelect('t')
+            ->addSelect('SIZE(g.alumnado) AS total')
+            ->join('g.tutor', 't')
+            ->orderBy('g.descripcion', 'DESC')
+            ->getQuery()
             ->getResult();
     }
 }
