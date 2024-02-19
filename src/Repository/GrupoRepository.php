@@ -13,4 +13,11 @@ class GrupoRepository extends ServiceEntityRepository
     {
         parent::__construct($managerRegistry, Grupo::class);
     }
+
+    public function findAllOrdenado(): array
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT g, t FROM App\Entity\Grupo g JOIN g.tutor t ORDER BY g.descripcion')
+            ->getResult();
+    }
 }

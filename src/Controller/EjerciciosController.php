@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\AlumnoRepository;
+use App\Repository\GrupoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -69,6 +70,15 @@ class EjerciciosController extends AbstractController
         $estudiantes = $alumnoRepository->findByAnioNacimientoOrdenado($anio);
         return $this->render('ejercicios/ap1.html.twig', [
             'estudiantes' => $estudiantes
+        ]);
+    }
+
+    #[Route('/ap8')]
+    final public function ap8(GrupoRepository $grupoRepository): Response
+    {
+        $grupos = $grupoRepository->findAllOrdenado();
+        return $this->render('ejercicios/ap8.html.twig', [
+            'grupos' => $grupos
         ]);
     }
 }
