@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Grupo;
 use App\Repository\AlumnoRepository;
 use App\Repository\GrupoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -88,6 +89,24 @@ class EjerciciosController extends AbstractController
         $resultados = $grupoRepository->listAllOrdenadoDescendenteConTotal();
         return $this->render('ejercicios/ap9.html.twig', [
             'resultados' => $resultados
+        ]);
+    }
+
+    #[Route('/ap10', name: 'ap10')]
+    final public function ap10(GrupoRepository $grupoRepository): Response
+    {
+        $grupos = $grupoRepository->findAllOrdenado();
+        return $this->render('ejercicios/ap10.html.twig', [
+            'grupos' => $grupos
+        ]);
+    }
+
+    #[Route('/ap10/{descripcion}', name: 'ap10_alumnado')]
+    final public function ap10Grupo(AlumnoRepository $alumnoRepository, Grupo $grupo): Response
+    {
+        $alumnado = $alumnoRepository->findByGrupoOrdenado($grupo);
+        return $this->render('ejercicios/ap1.html.twig', [
+            'estudiantes' => $alumnado
         ]);
     }
 }
