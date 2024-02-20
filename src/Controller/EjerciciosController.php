@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Grupo;
+use App\Entity\Profesor;
 use App\Repository\AlumnoRepository;
 use App\Repository\GrupoRepository;
+use App\Repository\ParteRepository;
+use App\Repository\ProfesorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -107,6 +110,25 @@ class EjerciciosController extends AbstractController
         $alumnado = $alumnoRepository->findByGrupoOrdenado($grupo);
         return $this->render('ejercicios/ap1.html.twig', [
             'estudiantes' => $alumnado
+        ]);
+    }
+
+    #[Route('/ap11', name: 'ap11')]
+    final public function ap11(ProfesorRepository $profesorRepository): Response
+    {
+        $resultados = $profesorRepository->listProfesoresConNumeroPartes();
+        return $this->render('ejercicios/ap11.html.twig', [
+            'resultados' => $resultados
+        ]);
+    }
+
+    #[Route('/ap11/{dni}', name: 'ap11_partes')]
+    final public function ap11Partes(ParteRepository $parteRepository, Profesor $profesor): Response
+    {
+        $partes = $parteRepository->findByProfesor($profesor);
+        return $this->render('ejercicios/ap11_partes.html.twig', [
+            'partes' => $partes,
+            'profesor' => $profesor
         ]);
     }
 }

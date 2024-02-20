@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Listado de profesorado</h1>
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>DNI</th>
+                <th>Tutor/a de grupo</th>
+                <th>Núm. de partes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resultado in resultados %}
+                {% set profesor = resultado.profesor %}
+                {% set total = resultado.total %}
+                <tr>
+                    <td>
+                        <a href="{{ path('ap11_partes', {'dni': profesor.dni}) }}">{{ profesor.nombre }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('ap11_partes', {'dni': profesor.dni}) }}">{{ profesor.apellidos }}</a>
+                    </td>
+                    <td>{{ profesor.dni }}</td>
+                    <td>{{ profesor.tutoria | default('---') }}</td>
+                    <td>{{ total }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">No hay profesorado</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

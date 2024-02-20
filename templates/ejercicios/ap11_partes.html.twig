@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Listado de partes de {{ profesor }}</h1>
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Alumno</th>
+                <th>¿Avisado?</th>
+                <th>Detalles</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for parte in partes %}
+                <tr>
+                    <td>{{ parte.fechaCreacion | date('d-m-Y') }}</td>
+                    <td>{{ parte.alumno }}</td>
+                    <td>{{ parte.avisado ? 'Sí' : 'No' }}</td>
+                    <td>{{ parte.observaciones | nl2br }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">No hay partes</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
