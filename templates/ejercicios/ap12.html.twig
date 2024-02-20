@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Listado de estudiantes y partes</h1>
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Fecha nacimiento</th>
+                <th>Grupo</th>
+                <th>Núm. partes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resultado in resultados %}
+                {% set estudiante = resultado.alumno %}
+                {% set total = resultado.total %}
+                <tr>
+                    <td>{{ estudiante.nombre }}</td>
+                    <td>{{ estudiante.apellidos }}</td>
+                    <td>{{ estudiante.fechaNacimiento | date('d/m/Y') }}</td>
+                    <td>{{ estudiante.grupo }}</td>
+                    <td>{{ total }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">No hay estudiantes</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

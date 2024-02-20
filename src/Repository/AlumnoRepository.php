@@ -89,4 +89,16 @@ class AlumnoRepository extends ServiceEntityRepository
             ->setParameter('grupo', $grupo)
             ->getResult();
     }
+
+    public function listAlumnosConNumeroPartes()
+    {
+        return $this->createQueryBuilder('a')
+            ->select('a AS alumno')
+            ->addSelect('g')
+            ->addSelect('SIZE(a.partes) AS total')
+            ->join('a.grupo', 'g')
+            ->orderBy('total', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

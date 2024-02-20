@@ -131,4 +131,13 @@ class EjerciciosController extends AbstractController
             'profesor' => $profesor
         ]);
     }
+
+    #[Route('/ap12', name: 'ap12')]
+    final public function ap12(AlumnoRepository $alumnoRepository): Response
+    {
+        $resultados = $alumnoRepository->listAlumnosConNumeroPartes();
+        return $this->render('ejercicios/ap12.html.twig', [
+            'resultados' => $resultados
+        ]);
+    }
 }
